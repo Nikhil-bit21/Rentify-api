@@ -88,14 +88,13 @@ router.delete('/:propertyID', jwtAuthMiddleware, async (req, res)=>{
     }
 })
 
-// let's start voting
 router.get('/:propertyID', jwtAuthMiddleware, async (req, res)=>{
     
     const PropertyID = req.params.propertyID;
     const userId = req.user.id;
 
     try{
-        // Find the Candidate document with the specified candidateID
+        
         const property = await Property.findById(PropertyID);
         if(!property){
             return res.status(404).json({ message: 'Property not found' });
